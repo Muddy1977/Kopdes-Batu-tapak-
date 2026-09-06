@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Koperasi Merah Putih</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <div class="merah"></div>
+                <div class="putih"></div>
+            </div>
+            <h1>KOPERASI MERAH PUTIH</h1>
+            <p>Bersama Membangun Ekonomi Bangsa</p>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#" onclick="showPage('dashboard')">Dashboard</a></li>
+            <li><a href="#" onclick="showPage('anggota')">Data Anggota</a></li>
+            <li><a href="#" onclick="showPage('simpanan')">Simpanan</a></li>
+            <li><a href="#" onclick="showPage('pinjaman')">Pinjaman</a></li>
+            <li><a href="#" onclick="showPage('angsuran')">Angsuran</a></li>
+            <li><a href="#" onclick="showPage('laporan')">Laporan</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- Dashboard -->
+        <section id="dashboard" class="page active">
+            <h2>Dashboard Koperasi</h2>
+            <div class="dashboard-cards">
+                <div class="card red-card">
+                    <h3>Total Anggota</h3>
+                    <p id="totalAnggota">0</p>
+                </div>
+                <div class="card white-card">
+                    <h3>Total Simpanan</h3>
+                    <p id="totalSimpanan">Rp 0</p>
+                </div>
+                <div class="card red-card">
+                    <h3>Total Pinjaman</h3>
+                    <p id="totalPinjaman">Rp 0</p>
+                </div>
+                <div class="card white-card">
+                    <h3>Total Angsuran</h3>
+                    <p id="totalAngsuran">Rp 0</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Data Anggota -->
+        <section id="anggota" class="page">
+            <h2>Data Anggota</h2>
+            <div class="form-container">
+                <form id="formAnggota">
+                    <input type="hidden" id="anggotaId">
+                    <div class="form-group">
+                        <label for="nama">Nama Lengkap</label>
+                        <input type="text" id="nama" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nik">NIK</label>
+                        <input type="text" id="nik" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="alamat">Alamat</label>
+                        <textarea id="alamat" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="telepon">No. Telepon</label>
+                        <input type="tel" id="telepon" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pekerjaan">Pekerjaan</label>
+                        <input type="text" id="pekerjaan" required>
+                    </div>
+                    <button type="submit">Simpan Anggota</button>
+                </form>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>NIK</th>
+                            <th>Alamat</th>
+                            <th>Telepon</th>
+                            <th>Pekerjaan</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelAnggota"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Simpanan -->
+        <section id="simpanan" class="page">
+            <h2>Simpanan Anggota</h2>
+            <div class="form-container">
+                <form id="formSimpanan">
+                    <input type="hidden" id="simpananId">
+                    <div class="form-group">
+                        <label for="simpananAnggota">Pilih Anggota</label>
+                        <select id="simpananAnggota" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="jenisSimpanan">Jenis Simpanan</label>
+                        <select id="jenisSimpanan" required>
+                            <option value="pokok">Simpanan Pokok</option>
+                            <option value="wajib">Simpanan Wajib</option>
+                            <option value="sukarela">Simpanan Sukarela</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="jumlahSimpanan">Jumlah (Rp)</label>
+                        <input type="number" id="jumlahSimpanan" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tanggalSimpanan">Tanggal</label>
+                        <input type="date" id="tanggalSimpanan" required>
+                    </div>
+                    <button type="submit">Simpan Data</button>
+                </form>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Anggota</th>
+                            <th>Jenis Simpanan</th>
+                            <th>Jumlah</th>
+                            <th>Tanggal</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelSimpanan"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Pinjaman -->
+        <section id="pinjaman" class="page">
+            <h2>Pinjaman Anggota</h2>
+            <div class="form-container">
+                <form id="formPinjaman">
+                    <input type="hidden" id="pinjamanId">
+                    <div class="form-group">
+                        <label for="pinjamanAnggota">Pilih Anggota</label>
+                        <select id="pinjamanAnggota" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="jumlahPinjaman">Jumlah Pinjaman (Rp)</label>
+                        <input type="number" id="jumlahPinjaman" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tenor">Tenor (Bulan)</label>
+                        <select id="tenor" required>
+                            <option value="3">3 Bulan</option>
+                            <option value="6">6 Bulan</option>
+                            <option value="12">12 Bulan</option>
+                            <option value="24">24 Bulan</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="bunga">Bunga (%) per tahun</label>
+                        <input type="number" id="bunga" value="12" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tanggalPinjaman">Tanggal Pinjaman</label>
+                        <input type="date" id="tanggalPinjaman" required>
+                    </div>
+                    <button type="submit">Simpan Pinjaman</button>
+                </form>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Anggota</th>
+                            <th>Jumlah</th>
+                            <th>Tenor</th>
+                            <th>Bunga</th>
+                            <th>Tanggal</th>
+                            <th>Status</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelPinjaman"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Angsuran -->
+        <section id="angsuran" class="page">
+            <h2>Angsuran Pinjaman</h2>
+            <div class="form-container">
+                <form id="formAngsuran">
+                    <input type="hidden" id="angsuranId">
+                    <div class="form-group">
+                        <label for="angsuranPinjaman">Pilih Pinjaman</label>
+                        <select id="angsuranPinjaman" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="jumlahAngsuran">Jumlah Angsuran (Rp)</label>
+                        <input type="number" id="jumlahAngsuran" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tanggalAngsuran">Tanggal Angsuran</label>
+                        <input type="date" id="tanggalAngsuran" required>
+                    </div>
+                    <button type="submit">Bayar Angsuran</button>
+                </form>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Anggota</th>
+                            <th>Jumlah</th>
+                            <th>Tanggal</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelAngsuran"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Laporan -->
+        <section id="laporan" class="page">
+            <h2>Laporan Koperasi</h2>
+            <div class="report-container">
+                <div class="report-card">
+                    <h3>Rekapitulasi Anggota</h3>
+                    <button onclick="printLaporan('anggota')">Cetak Laporan Anggota</button>
+                </div>
+                <div class="report-card">
+                    <h3>Rekapitulasi Simpanan</h3>
+                    <button onclick="printLaporan('simpanan')">Cetak Laporan Simpanan</button>
+                </div>
+                <div class="report-card">
+                    <h3>Rekapitulasi Pinjaman</h3>
+                    <button onclick="printLaporan('pinjaman')">Cetak Laporan Pinjaman</button>
+                </div>
+                <div class="report-card">
+                    <h3>Rekapitulasi Angsuran</h3>
+                    <button onclick="printLaporan('angsuran')">Cetak Laporan Angsuran</button>
+                </div>
+            </div>
+            <div id="laporanOutput"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Koperasi Merah Putih - Bersama Membangun Ekonomi Bangsa</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
